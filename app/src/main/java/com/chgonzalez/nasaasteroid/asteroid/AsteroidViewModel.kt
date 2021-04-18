@@ -1,4 +1,11 @@
 package com.chgonzalez.nasaasteroid.asteroid
 
-class AsteroidViewModel {
+import androidx.lifecycle.ViewModel
+
+class AsteroidViewModel : ViewModel() {
+
+    init {
+
+    }
+
 }
