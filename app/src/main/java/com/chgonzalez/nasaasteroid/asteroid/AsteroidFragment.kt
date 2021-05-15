@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.chgonzalez.nasaasteroid.R
 import com.chgonzalez.nasaasteroid.databinding.FragmentAsteroidBinding
+import com.chgonzalez.nasaasteroid.network.PictureOfDay
 import com.chgonzalez.nasaasteroid.util.AsteroidAdapter
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_asteroid.*
 
 class AsteroidFragment : Fragment() {
 
@@ -21,9 +24,7 @@ class AsteroidFragment : Fragment() {
 
         binding.asteroidViewModel = viewModel
 
-        val adapter = AsteroidAdapter()
-
-        binding.asteroidList.adapter = adapter
+        binding.asteroidList.adapter = AsteroidAdapter()
 
         setHasOptionsMenu(true)
 

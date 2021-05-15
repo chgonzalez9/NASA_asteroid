@@ -1,4 +1,4 @@
-package com.chgonzalez.nasaasteroid.network
+package com.chgonzalez.nasaasteroid.util
 
 object Constants {
     const val API_QUERY_DATE_FORMAT = "YYYY-MM-dd"
