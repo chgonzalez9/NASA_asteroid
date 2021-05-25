@@ -1,18 +1,24 @@
 package com.chgonzalez.nasaasteroid.util
 
 import android.widget.ImageView
-import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chgonzalez.nasaasteroid.R
 import com.chgonzalez.nasaasteroid.network.AsteroidProperty
+import com.chgonzalez.nasaasteroid.network.PictureOfDay
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<AsteroidProperty>?) {
     val adapter = recyclerView.adapter as AsteroidAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("pictureData")
+fun bindPictureRecyclerView(recyclerView: RecyclerView, data: List<PictureOfDay>?) {
+    val adapter = recyclerView.adapter as PictureAdapter
     adapter.submitList(data)
 }
 

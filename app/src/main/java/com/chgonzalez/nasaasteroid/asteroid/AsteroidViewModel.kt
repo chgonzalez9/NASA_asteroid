@@ -11,14 +11,6 @@ import kotlinx.coroutines.launch
 
 class AsteroidViewModel : ViewModel() {
 
-    // The internal MutableLiveData String that stores the most recent response
-    private val _response = MutableLiveData<String>()
-
-    // The external immutable LiveData for the response String
-    val response: LiveData<String>
-        get() = _response
-
-
     private val _imageOfDay = MutableLiveData<List<PictureOfDay>>()
     val imageOfDay: LiveData<List<PictureOfDay>>
         get() = _imageOfDay
@@ -29,16 +21,26 @@ class AsteroidViewModel : ViewModel() {
 
     init {
         getAsteroidList()
+        getImageOfDay()
     }
 
 
     private fun getAsteroidList() {
         viewModelScope.launch {
             try {
-                var listResult = NasaApi.retrofitService.getPictureOfDay()
-                _response.value = "Success: ${listResult.size} Mars properties retrieved"
+                _asteroid.value = NasaApi.retrofitService.getAsteroid()
             } catch (e: Exception) {
-                _response.value = "Failure: ${e.message}"
+                _asteroid.value = ArrayList()
+            }
+        }
+    }
+
+    private fun getImageOfDay() {
+        viewModelScope.launch {
+            try {
+                _imageOfDay.value = NasaApi.retrofitService.getPictureOfDay()
+            } catch (e: Exception) {
+                _imageOfDay.value = ArrayList()
             }
         }
     }

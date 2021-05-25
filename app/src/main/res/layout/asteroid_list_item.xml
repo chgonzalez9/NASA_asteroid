@@ -26,7 +26,7 @@
 
             <TextView
                 android:id="@+id/asteroidName"
-                android:text="@{String.valueOf(asteroidListItems.name)}"
+                android:text="@{String.valueOf(asteroidListItems.codename)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColor"
@@ -34,7 +34,7 @@
 
             <TextView
                 android:id="@+id/asteroidDate"
-                android:text="@{String.valueOf(asteroidListItems.approachDate)}"
+                android:text="@{String.valueOf(asteroidListItems.closeApproachDate)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColor"
