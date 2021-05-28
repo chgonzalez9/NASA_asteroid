@@ -8,28 +8,33 @@
         <variable
             name="asteroidViewModel"
             type="com.chgonzalez.nasaasteroid.asteroid.AsteroidViewModel" />
-        <variable
-            name="nasaImage"
-            type="com.chgonzalez.nasaasteroid.network.PictureOfDay" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pictureOfDay"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            pictureData="@{asteroidViewModel.imageOfDay}"
-            tools:listitem="@layout/picture_of_day"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+        <FrameLayout
+            android:id="@+id/pictureFragment"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/asteroidList"
-            tools:itemCount="1"
-            app:spanCount="1"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/asteroidList">
+
+            <ImageView
+                android:id="@+id/picture_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:padding="2dp"
+                app:imageUrl="@{asteroidViewModel.imageOfDay.url}"
+                tools:src="@tools:sample/backgrounds/scenic"
+                android:contentDescription="@{asteroidViewModel.imageOfDay.title}" />
+
+        </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/asteroidList"
@@ -40,7 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pictureOfDay"
+            app:layout_constraintTop_toBottomOf="@id/pictureFragment"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

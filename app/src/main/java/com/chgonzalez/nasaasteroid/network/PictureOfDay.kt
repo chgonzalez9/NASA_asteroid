@@ -8,6 +8,7 @@ import kotlinx.android.parcel.Parcelize
 data class PictureOfDay(
     @Json(name = "media_type")
     val mediaType: String,
-    val tittle: String,
+    val title: String,
     @Json(name = "url")
-    val url: String) : Parcelable
+    val url: String
+) : Parcelable

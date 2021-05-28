@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.chgonzalez.nasaasteroid.network.AsteroidProperty
-import com.chgonzalez.nasaasteroid.network.NasaApi
-import com.chgonzalez.nasaasteroid.network.PictureOfDay
+import com.chgonzalez.nasaasteroid.network.*
+import com.chgonzalez.nasaasteroid.util.Constants
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class AsteroidViewModel : ViewModel() {
 
-    private val _imageOfDay = MutableLiveData<List<PictureOfDay>>()
-    val imageOfDay: LiveData<List<PictureOfDay>>
+    private val _imageOfDay = MutableLiveData<PictureOfDay>()
+    val imageOfDay: LiveData<PictureOfDay>
         get() = _imageOfDay
 
     private val _asteroid = MutableLiveData<List<AsteroidProperty>>()
@@ -28,8 +28,14 @@ class AsteroidViewModel : ViewModel() {
     private fun getAsteroidList() {
         viewModelScope.launch {
             try {
-                _asteroid.value = NasaApi.retrofitService.getAsteroid()
+                val jsonResult = NasaApi.retrofitService.getAsteroid(
+                    Constants.API_KEY,
+                    "2020-01-08",
+                    "2020-01-09"
+                )
+                _asteroid.value = parseAsteroidsJsonResult(JSONObject(jsonResult))
             } catch (e: Exception) {
+                e.printStackTrace()
                 _asteroid.value = ArrayList()
             }
         }
@@ -38,9 +44,9 @@ class AsteroidViewModel : ViewModel() {
     private fun getImageOfDay() {
         viewModelScope.launch {
             try {
-                _imageOfDay.value = NasaApi.retrofitService.getPictureOfDay()
+                _imageOfDay.value = PictureApi.retrofitService.getPictureOfDay(Constants.API_KEY)
             } catch (e: Exception) {
-                _imageOfDay.value = ArrayList()
+                e.printStackTrace()
             }
         }
     }
