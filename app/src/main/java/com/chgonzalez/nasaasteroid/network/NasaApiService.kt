@@ -1,9 +1,9 @@
 package com.chgonzalez.nasaasteroid.network
 
-import android.annotation.SuppressLint
 import com.chgonzalez.nasaasteroid.util.Constants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
 import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -12,25 +12,33 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
+
+enum class DateFilters(val date: String) { ALL_WEEK(""), TODAY(""), SAVED("") }
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
+val client: OkHttpClient = OkHttpClient().newBuilder()
+    .connectTimeout(30, TimeUnit.SECONDS)
+    .readTimeout(30, TimeUnit.SECONDS)
+    .writeTimeout(30, TimeUnit.SECONDS)
+    .build()
+
 private val retrofit = Retrofit.Builder()
     .baseUrl(Constants.BASE_URL)
+    .client(client)
     .addConverterFactory(ScalarsConverterFactory.create())
     .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .build()
+    .build()
 
 interface AsteroidApiService {
 
     @GET("neo/rest/v1/feed")
     suspend fun getAsteroid(
-        @Query("api_key") apiKey: String,
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String
+        @Query("api_key") apiKey: String
     ): String
 }
 
@@ -70,7 +78,6 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<AsteroidProperty
             val absoluteMagnitude = asteroidJson.getDouble("absolute_magnitude_h")
             val estimatedDiameter = asteroidJson.getJSONObject("estimated_diameter")
                 .getJSONObject("kilometers").getDouble("estimated_diameter_max")
-
             val closeApproachData = asteroidJson
                 .getJSONArray("close_approach_data").getJSONObject(0)
             val relativeVelocity = closeApproachData.getJSONObject("relative_velocity")
@@ -91,7 +98,6 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<AsteroidProperty
     return asteroidList
 }
 
-@SuppressLint("WeekBasedYear")
 private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     val formattedDateList = ArrayList<String>()
 
@@ -104,7 +110,5 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     }
 
     return formattedDateList
+
 }
-
-
-

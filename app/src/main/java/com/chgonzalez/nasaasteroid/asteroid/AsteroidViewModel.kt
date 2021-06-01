@@ -1,5 +1,6 @@
 package com.chgonzalez.nasaasteroid.asteroid
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,10 @@ class AsteroidViewModel : ViewModel() {
     val asteroid: LiveData<List<AsteroidProperty>>
         get() = _asteroid
 
+    private val _navigateToDetails = MutableLiveData<AsteroidProperty>()
+    val navigateToDetails: LiveData<AsteroidProperty>
+        get() = _navigateToDetails
+
     init {
         getAsteroidList()
         getImageOfDay()
@@ -29,9 +34,7 @@ class AsteroidViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val jsonResult = NasaApi.retrofitService.getAsteroid(
-                    Constants.API_KEY,
-                    "2020-01-08",
-                    "2020-01-09"
+                    Constants.API_KEY
                 )
                 _asteroid.value = parseAsteroidsJsonResult(JSONObject(jsonResult))
             } catch (e: Exception) {
@@ -49,6 +52,15 @@ class AsteroidViewModel : ViewModel() {
                 e.printStackTrace()
             }
         }
+    }
+
+    fun displayDetails(asteroidProperty: AsteroidProperty) {
+        _navigateToDetails.value = asteroidProperty
+    }
+
+    @SuppressLint("NullSafeMutableLiveData")
+    fun displayDetailsComplete() {
+        _navigateToDetails.value = null
     }
 
 }

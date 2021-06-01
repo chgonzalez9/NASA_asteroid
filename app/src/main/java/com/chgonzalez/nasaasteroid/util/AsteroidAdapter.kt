@@ -1,18 +1,15 @@
 package com.chgonzalez.nasaasteroid.util
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.chgonzalez.nasaasteroid.R
 import com.chgonzalez.nasaasteroid.databinding.AsteroidListItemBinding
 import com.chgonzalez.nasaasteroid.network.AsteroidProperty
 
-class AsteroidAdapter : ListAdapter<AsteroidProperty, AsteroidAdapter.ViewHolder>(DiffCallBack()) {
+class AsteroidAdapter(val onClickListener: OnClickListener) :
+    ListAdapter<AsteroidProperty, AsteroidAdapter.ViewHolder>(DiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -20,6 +17,9 @@ class AsteroidAdapter : ListAdapter<AsteroidProperty, AsteroidAdapter.ViewHolder
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(item)
+        }
 
         holder.bind(item)
     }
@@ -42,15 +42,26 @@ class AsteroidAdapter : ListAdapter<AsteroidProperty, AsteroidAdapter.ViewHolder
 
     }
 
-}
+    class DiffCallBack : DiffUtil.ItemCallback<AsteroidProperty>() {
+        override fun areItemsTheSame(
+            oldItem: AsteroidProperty,
+            newItem: AsteroidProperty
+        ): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-class DiffCallBack : DiffUtil.ItemCallback<AsteroidProperty>() {
-    override fun areItemsTheSame(oldItem: AsteroidProperty, newItem: AsteroidProperty): Boolean {
-        return oldItem.id == newItem.id
+        override fun areContentsTheSame(
+            oldItem: AsteroidProperty,
+            newItem: AsteroidProperty
+        ): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
-    override fun areContentsTheSame(oldItem: AsteroidProperty, newItem: AsteroidProperty): Boolean {
-        return oldItem == newItem
+    class OnClickListener(val clickListener: (asteroidProperty: AsteroidProperty) -> Unit) {
+        fun onClick(asteroidProperty: AsteroidProperty) = clickListener(asteroidProperty)
     }
 
 }
+
