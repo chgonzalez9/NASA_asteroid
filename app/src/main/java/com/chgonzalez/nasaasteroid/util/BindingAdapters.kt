@@ -1,12 +1,14 @@
 package com.chgonzalez.nasaasteroid.util
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chgonzalez.nasaasteroid.R
-import com.chgonzalez.nasaasteroid.network.AsteroidProperty
+import com.chgonzalez.nasaasteroid.asteroid.PictureStatus
+import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
 import com.squareup.picasso.Picasso
 
 @BindingAdapter("listData")
@@ -60,4 +62,17 @@ fun bindTextViewToKmUnit(textView: TextView, number: Double) {
 fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
     val context = textView.context
     textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
+}
+
+@BindingAdapter("pictureStatus")
+fun bindStatus(textView: TextView, status: PictureStatus?) {
+    when (status) {
+        PictureStatus.DONE -> {
+            textView.visibility = View.GONE
+        }
+        PictureStatus.ERROR -> {
+            textView.visibility = View.VISIBLE
+            textView.text = textView.context.getString(R.string.pictureError)
+        }
+    }
 }

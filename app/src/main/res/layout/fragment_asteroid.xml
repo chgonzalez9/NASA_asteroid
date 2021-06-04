@@ -34,6 +34,12 @@
                 tools:src="@tools:sample/backgrounds/scenic"
                 android:contentDescription="@{asteroidViewModel.imageOfDay.title}" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                pictureStatus="@{asteroidViewModel.pictureStatus}" />
+
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView

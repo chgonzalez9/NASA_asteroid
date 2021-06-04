@@ -2,7 +2,7 @@ package com.chgonzalez.nasaasteroid.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.chgonzalez.nasaasteroid.network.AsteroidProperty
+import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
 
 @Entity
 data class DatabaseAsteroids constructor(

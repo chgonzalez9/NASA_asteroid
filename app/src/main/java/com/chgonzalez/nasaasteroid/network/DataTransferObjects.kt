@@ -1,6 +1,7 @@
 package com.chgonzalez.nasaasteroid.network
 
 import com.chgonzalez.nasaasteroid.database.DatabaseAsteroids
+import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)

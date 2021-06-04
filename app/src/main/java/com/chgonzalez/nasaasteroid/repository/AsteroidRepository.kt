@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.chgonzalez.nasaasteroid.database.AsteroidsDatabase
 import com.chgonzalez.nasaasteroid.database.asDomainModel
-import com.chgonzalez.nasaasteroid.network.AsteroidProperty
+import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
 import com.chgonzalez.nasaasteroid.network.NasaApi
 import com.chgonzalez.nasaasteroid.network.asDatabaseModel
 import com.chgonzalez.nasaasteroid.network.parseAsteroidsJsonResult

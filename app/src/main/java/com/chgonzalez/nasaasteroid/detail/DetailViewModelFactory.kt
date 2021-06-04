@@ -16,16 +16,16 @@
 
 package com.chgonzalez.nasaasteroid.detail
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.chgonzalez.nasaasteroid.network.AsteroidProperty
+import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
 
 /**
  * Simple ViewModel factory that provides the MarsProperty and context to the ViewModel.
  */
 class DetailViewModelFactory(
-        private val asteroidProperty: AsteroidProperty) : ViewModelProvider.Factory {
+    private val asteroidProperty: AsteroidProperty
+) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {

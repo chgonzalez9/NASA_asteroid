@@ -21,6 +21,6 @@
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="asteroidDetails"
-            app:argType="com.chgonzalez.nasaasteroid.network.AsteroidProperty" />
+            app:argType="com.chgonzalez.nasaasteroid.domain.AsteroidProperty" />
     </fragment>
 </navigation>

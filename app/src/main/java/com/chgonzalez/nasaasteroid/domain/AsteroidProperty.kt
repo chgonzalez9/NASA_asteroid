@@ -1,4 +1,4 @@
-package com.chgonzalez.nasaasteroid.network
+package com.chgonzalez.nasaasteroid.domain
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

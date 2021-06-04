@@ -1,5 +1,7 @@
 package com.chgonzalez.nasaasteroid.network
 
+import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
+import com.chgonzalez.nasaasteroid.domain.PictureOfDay
 import com.chgonzalez.nasaasteroid.util.Constants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

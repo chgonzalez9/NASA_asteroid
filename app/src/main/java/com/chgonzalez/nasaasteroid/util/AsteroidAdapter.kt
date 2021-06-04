@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chgonzalez.nasaasteroid.databinding.AsteroidListItemBinding
-import com.chgonzalez.nasaasteroid.network.AsteroidProperty
+import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
 
 class AsteroidAdapter(val onClickListener: OnClickListener) :
     ListAdapter<AsteroidProperty, AsteroidAdapter.ViewHolder>(DiffCallBack()) {

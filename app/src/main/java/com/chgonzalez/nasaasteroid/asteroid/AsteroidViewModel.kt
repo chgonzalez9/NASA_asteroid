@@ -7,18 +7,24 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.chgonzalez.nasaasteroid.database.getDatabase
-import com.chgonzalez.nasaasteroid.network.AsteroidProperty
+import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
+import com.chgonzalez.nasaasteroid.domain.PictureOfDay
 import com.chgonzalez.nasaasteroid.network.PictureApi
-import com.chgonzalez.nasaasteroid.network.PictureOfDay
 import com.chgonzalez.nasaasteroid.repository.AsteroidRepository
 import com.chgonzalez.nasaasteroid.util.Constants
 import kotlinx.coroutines.launch
+
+enum class PictureStatus { DONE, ERROR }
 
 class AsteroidViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _imageOfDay = MutableLiveData<PictureOfDay>()
     val imageOfDay: LiveData<PictureOfDay>
         get() = _imageOfDay
+
+    private val _pictureStatus = MutableLiveData<PictureStatus>()
+    val pictureStatus: LiveData<PictureStatus>
+        get() = _pictureStatus
 
     private val _navigateToDetails = MutableLiveData<AsteroidProperty>()
     val navigateToDetails: LiveData<AsteroidProperty>
@@ -47,7 +53,13 @@ class AsteroidViewModel(application: Application) : AndroidViewModel(application
     private fun getImageOfDay() {
         viewModelScope.launch {
             try {
-                _imageOfDay.value = PictureApi.retrofitService.getPictureOfDay(Constants.API_KEY)
+                val picture = PictureApi.retrofitService.getPictureOfDay(Constants.API_KEY)
+                if (picture.mediaType.contains("image")) {
+                    _imageOfDay.value = picture
+                    _pictureStatus.value = PictureStatus.DONE
+                } else {
+                    _pictureStatus.value = PictureStatus.ERROR
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
