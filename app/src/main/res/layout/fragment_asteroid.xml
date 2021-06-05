@@ -5,7 +5,8 @@
     tools:context=".asteroid.AsteroidFragment">
 
     <data>
-        <variable
+
+    <variable
             name="asteroidViewModel"
             type="com.chgonzalez.nasaasteroid.asteroid.AsteroidViewModel" />
     </data>

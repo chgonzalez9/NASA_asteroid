@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
 
-class DetailViewModel(asteroidProperty: AsteroidProperty): ViewModel() {
+class DetailViewModel(asteroidProperty: AsteroidProperty) : ViewModel() {
 
     private val _asteroidDetail = MutableLiveData<AsteroidProperty>()
     val asteroidDetail: LiveData<AsteroidProperty>

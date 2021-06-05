@@ -14,7 +14,11 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
-enum class DateFilters(val date: String) { ALL_WEEK(NEXT_SEVEN_DAYS), TODAY(TODAY_DATE), SAVED(NEXT_SEVEN_DAYS) }
+enum class DateFilters(val string: String) {
+    ALL_WEEK(NEXT_SEVEN_DAYS), TODAY(TODAY_DATE), SAVED(
+        NEXT_SEVEN_DAYS
+    )
+}
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())

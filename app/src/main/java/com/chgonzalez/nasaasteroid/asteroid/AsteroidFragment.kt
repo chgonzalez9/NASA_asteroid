@@ -3,7 +3,6 @@ package com.chgonzalez.nasaasteroid.asteroid
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.chgonzalez.nasaasteroid.R
@@ -29,7 +28,7 @@ class AsteroidFragment : Fragment() {
             viewModel.navigateToDetails(it)
         })
 
-        viewModel.navigateToDetails.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToDetails.observe(viewLifecycleOwner, {
             if (null != it) {
                 this.findNavController()
                     .navigate(AsteroidFragmentDirections.actionAsteroidFragmentToDetailFragment(it))

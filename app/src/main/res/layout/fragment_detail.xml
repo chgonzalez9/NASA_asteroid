@@ -5,6 +5,7 @@
     tools:context=".detail.DetailFragment">
 
     <data>
+
         <variable
             name="asteroidDetailViewModel"
             type="com.chgonzalez.nasaasteroid.detail.DetailViewModel" />
@@ -47,7 +48,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColor"
-                        android:text="@string/close_approach_data_title"/>
+                        android:text="@string/close_approach_data_title" />
 
                     <TextView
                         android:id="@+id/close_approach_date"
@@ -76,7 +77,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/textColor"
-                            android:text="@string/absolute_magnitude_title"/>
+                            android:text="@string/absolute_magnitude_title" />
 
                         <TextView
                             android:id="@+id/absolute_magnitude"
@@ -148,7 +149,7 @@
             </LinearLayout>
 
         </ScrollView>
-        
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
