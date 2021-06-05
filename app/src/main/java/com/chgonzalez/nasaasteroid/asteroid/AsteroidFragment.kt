@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.chgonzalez.nasaasteroid.R
 import com.chgonzalez.nasaasteroid.databinding.FragmentAsteroidBinding
+import com.chgonzalez.nasaasteroid.network.DateFilters
 import com.chgonzalez.nasaasteroid.util.AsteroidAdapter
 
 class AsteroidFragment : Fragment() {
@@ -23,8 +24,9 @@ class AsteroidFragment : Fragment() {
 
         binding.asteroidViewModel = viewModel
 
+
         binding.asteroidList.adapter = AsteroidAdapter(AsteroidAdapter.OnClickListener {
-            viewModel.displayDetails(it)
+            viewModel.navigateToDetails(it)
         })
 
         viewModel.navigateToDetails.observe(viewLifecycleOwner, Observer {
@@ -46,6 +48,13 @@ class AsteroidFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        viewModel.updateFilter(
+                when (item.itemId) {
+                    R.id.show_week_asteroid -> DateFilters.ALL_WEEK
+                    R.id.show_today_asteroid -> DateFilters.TODAY
+                    else -> DateFilters.SAVED
+                }
+        )
         return true
     }
 }

@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chgonzalez.nasaasteroid.R
 import com.chgonzalez.nasaasteroid.asteroid.PictureStatus
+import com.chgonzalez.nasaasteroid.asteroid.StatusLoading
 import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
 import com.squareup.picasso.Picasso
 
@@ -73,6 +74,35 @@ fun bindStatus(textView: TextView, status: PictureStatus?) {
         PictureStatus.ERROR -> {
             textView.visibility = View.VISIBLE
             textView.text = textView.context.getString(R.string.pictureError)
+        }
+    }
+}
+
+@BindingAdapter("statusLoading")
+fun bindLoading(imageView: ImageView, status: StatusLoading?) {
+    when (status) {
+        StatusLoading.LOADING -> {
+            imageView.visibility = View.VISIBLE
+            imageView.setImageResource(R.drawable.loading_animation)
+        }
+        StatusLoading.DONE -> {
+            imageView.visibility = View.GONE
+        }
+        StatusLoading.ERROR -> {
+            imageView.visibility = View.VISIBLE
+            imageView.setImageResource(R.drawable.ic_connection_error)
+        }
+    }
+}
+
+@BindingAdapter("pictureTitle")
+fun bindPictureTitle(textView: TextView, status: PictureStatus?) {
+    when (status) {
+        PictureStatus.DONE -> {
+            textView.visibility = View.VISIBLE
+        }
+        PictureStatus.ERROR -> {
+            textView.visibility = View.GONE
         }
     }
 }

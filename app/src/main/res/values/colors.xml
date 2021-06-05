@@ -13,6 +13,7 @@
     <color name="primary_variant">#B9162A4A</color>
     <color name="background">#D3022C3C</color>
     <color name="textColor">#FFFFFFFF</color>
+    <color name="pictureTitleBackground">#72000000</color>
 
     <color name="primary_night">#B9152A4A</color>
     <color name="primary_variant_night">#B9162A4A</color>

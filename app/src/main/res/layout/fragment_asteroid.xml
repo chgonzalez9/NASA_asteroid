@@ -26,7 +26,7 @@
             <ImageView
                 android:id="@+id/picture_day"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="true"
                 android:padding="2dp"
@@ -35,10 +35,31 @@
                 android:contentDescription="@{asteroidViewModel.imageOfDay.title}" />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:textAlignment="center"
+                android:padding="8dp"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:background="@color/pictureTitleBackground"
+                android:text="@{asteroidViewModel.imageOfDay.title}"
+                pictureTitle="@{asteroidViewModel.pictureStatus}"
+                tools:text="Nasa Picture Of day" />
+
+            <TextView
+                pictureStatus="@{asteroidViewModel.pictureStatus}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
-                pictureStatus="@{asteroidViewModel.pictureStatus}" />
+                statusLoading="@{asteroidViewModel.pictureLoading}"
+                tools:ignore="ContentDescription" />
 
         </FrameLayout>
 
@@ -46,13 +67,23 @@
             android:id="@+id/asteroidList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            listData="@{asteroidViewModel.asteroid}"
+            listData="@{asteroidViewModel.asteroidList}"
             tools:listitem="@layout/asteroid_list_item"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pictureFragment"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toTopOf="@id/asteroidList"
+            app:layout_constraintEnd_toEndOf="@id/asteroidList"
+            app:layout_constraintStart_toStartOf="@id/asteroidList"
+            app:layout_constraintBottom_toBottomOf="@id/asteroidList"
+            statusLoading="@{asteroidViewModel.asteroidLoading}"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
