@@ -3,7 +3,7 @@
     <string name="app_name">NASA Asteroides</string>
     <string name="next_week_asteroids">Asteroides de la semana</string>
     <string name="today_asteroids">Asteroides de hoy</string>
-    <string name="saved_asteroids">Asteroides de hoy</string>
+    <string name="saved_asteroids">Asteroides guardados</string>
     <string name="close_approach_data_title">Fecha de aproximacion</string>
     <string name="absolute_magnitude_title">Magnitud absoluta</string>
     <string name="estimated_diameter_title">Diametro estimado</string>
