@@ -8,7 +8,7 @@ import com.chgonzalez.nasaasteroid.repository.AsteroidRepository
 import retrofit2.HttpException
 
 class DataWork(appContext: Context, params: WorkerParameters) :
-    CoroutineWorker(appContext, params) {
+        CoroutineWorker(appContext, params) {
 
     companion object {
         const val WORK_NAME = "DataWorker"

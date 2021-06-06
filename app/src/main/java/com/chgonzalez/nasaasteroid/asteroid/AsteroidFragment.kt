@@ -31,7 +31,7 @@ class AsteroidFragment : Fragment() {
         viewModel.navigateToDetails.observe(viewLifecycleOwner, {
             if (null != it) {
                 this.findNavController()
-                    .navigate(AsteroidFragmentDirections.actionAsteroidFragmentToDetailFragment(it))
+                        .navigate(AsteroidFragmentDirections.actionAsteroidFragmentToDetailFragment(it))
                 viewModel.displayDetailsComplete()
             }
         })

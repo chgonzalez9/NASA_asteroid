@@ -58,7 +58,6 @@ class AsteroidViewModel(application: Application) : AndroidViewModel(application
 
     private fun getAsteroidList() {
         viewModelScope.launch {
-            _asteroidLoading.value = StatusLoading.LOADING
             try {
                 asteroidRepository.refreshAsteroids()
                 _asteroidLoading.value = StatusLoading.DONE

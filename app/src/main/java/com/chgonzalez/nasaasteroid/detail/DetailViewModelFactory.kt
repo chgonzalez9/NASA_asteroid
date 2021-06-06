@@ -24,7 +24,7 @@ import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
  * Simple ViewModel factory that provides the MarsProperty and context to the ViewModel.
  */
 class DetailViewModelFactory(
-    private val asteroidProperty: AsteroidProperty
+        private val asteroidProperty: AsteroidProperty
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

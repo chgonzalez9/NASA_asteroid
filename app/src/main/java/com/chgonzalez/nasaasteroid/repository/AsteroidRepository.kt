@@ -18,10 +18,6 @@ import org.json.JSONObject
 
 class AsteroidRepository(private val database: AsteroidsDatabase) {
 
-    val asteroids: LiveData<List<AsteroidProperty>> = Transformations.map(database.asteroidDao.getAsteroids(TODAY_DATE)) {
-        it.asDomainModel()
-    }
-
     fun getAsteroidSelection(filters: DateFilters): LiveData<List<AsteroidProperty>> {
         return when (filters) {
             (DateFilters.TODAY) -> Transformations.map(database.asteroidDao.getTodayAsteroids(TODAY_DATE)) {
@@ -50,4 +46,5 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
             }
         }
     }
+
 }

@@ -9,7 +9,7 @@ import com.chgonzalez.nasaasteroid.databinding.AsteroidListItemBinding
 import com.chgonzalez.nasaasteroid.domain.AsteroidProperty
 
 class AsteroidAdapter(val onClickListener: OnClickListener) :
-    ListAdapter<AsteroidProperty, AsteroidAdapter.ViewHolder>(DiffCallBack()) {
+        ListAdapter<AsteroidProperty, AsteroidAdapter.ViewHolder>(DiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -44,15 +44,15 @@ class AsteroidAdapter(val onClickListener: OnClickListener) :
 
     class DiffCallBack : DiffUtil.ItemCallback<AsteroidProperty>() {
         override fun areItemsTheSame(
-            oldItem: AsteroidProperty,
-            newItem: AsteroidProperty
+                oldItem: AsteroidProperty,
+                newItem: AsteroidProperty
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: AsteroidProperty,
-            newItem: AsteroidProperty
+                oldItem: AsteroidProperty,
+                newItem: AsteroidProperty
         ): Boolean {
             return oldItem == newItem
         }

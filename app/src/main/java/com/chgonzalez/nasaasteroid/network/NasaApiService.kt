@@ -16,26 +16,26 @@ import java.util.concurrent.TimeUnit
 
 enum class DateFilters(val string: String) {
     ALL_WEEK(NEXT_SEVEN_DAYS), TODAY(TODAY_DATE), SAVED(
-        NEXT_SEVEN_DAYS
+            NEXT_SEVEN_DAYS
     )
 }
 
 private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
 val client: OkHttpClient = OkHttpClient().newBuilder()
-    .connectTimeout(30, TimeUnit.SECONDS)
-    .readTimeout(30, TimeUnit.SECONDS)
-    .writeTimeout(30, TimeUnit.SECONDS)
-    .build()
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(30, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
+        .build()
 
 private val retrofit = Retrofit.Builder()
-    .baseUrl(Constants.BASE_URL)
-    .client(client)
-    .addConverterFactory(ScalarsConverterFactory.create())
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .build()
+        .baseUrl(Constants.BASE_URL)
+        .client(client)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
 
 interface AsteroidApiService {
 
@@ -50,7 +50,7 @@ interface PictureApiService {
 
     @GET("planetary/apod")
     suspend fun getPictureOfDay(
-        @Query("api_key") apiKey: String
+            @Query("api_key") apiKey: String
     ): PictureOfDay
 
 }
