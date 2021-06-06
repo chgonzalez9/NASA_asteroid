@@ -11,4 +11,6 @@
     <string name="distance_from_earth_title">Distancia de la tierra</string>
     <string name="astronomica_unit_explanation">La unidad astronómica (au) es una unidad de longitud, aproximadamente la distancia de la Tierra al Sol e igual a unos 150 millones de kilómetros (93 millones de millas)</string>
     <string name="pictureError">No hay imágenes hoy</string>
+    <string name="isHazardous">Potencialmente peligroso</string>
+    <string name="isSafe">No es peligroso</string>
 </resources>
