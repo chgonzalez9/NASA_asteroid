@@ -36,11 +36,21 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
         withContext(Dispatchers.IO) {
             try {
                 val asteroidResult = parseAsteroidsJsonResult(
-                        JSONObject(
-                                NasaApi.retrofitService.getAsteroid(TODAY_DATE, Constants.API_KEY)
-                        )
+                    JSONObject(
+                        NasaApi.retrofitService.getAsteroid(TODAY_DATE, Constants.API_KEY)
+                    )
                 )
                 database.asteroidDao.insertAll(*asteroidResult.asDatabaseModel())
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    suspend fun deleteAsteroids() {
+        withContext(Dispatchers.IO) {
+            try {
+                database.asteroidDao.deleteAsteroids(TODAY_DATE)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

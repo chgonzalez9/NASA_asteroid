@@ -20,6 +20,7 @@ class DataWork(appContext: Context, params: WorkerParameters) :
 
         return try {
             repository.refreshAsteroids()
+            repository.deleteAsteroids()
             Result.success()
         } catch (e: HttpException) {
             Result.retry()

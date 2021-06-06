@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                 }.build()
 
         val repeatingRequest = PeriodicWorkRequestBuilder<DataWork>(1, TimeUnit.DAYS)
+            .setConstraints(constraints)
                 .build()
 
         WorkManager.getInstance().enqueueUniquePeriodicWork(
